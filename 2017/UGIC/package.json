@@ -1,0 +1,11 @@
+{
+  "name": "ugic-2017-silo",
+  "version": "1.0.0",
+  "description": "get involved; a community presentation",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "steve gourley",
+  "license": "MIT"
+}
