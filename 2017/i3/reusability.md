@@ -1,4 +1,4 @@
-# Reusib
+# Reusability
 
 ## Creating a Python module
 An important step towards creating reusable code is to package its component functions
