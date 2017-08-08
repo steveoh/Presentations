@@ -1,6 +1,6 @@
 # Reusability
 
-## Creating a Python module
+### Creating a Python module
 An important step towards creating reusable code is to package its component functions
 into a module that can be called from the Python path by any script. To start, we need to
 create a folder as a sibling to your project or in the `site-packages` folder, where most Python modules are placed when
@@ -50,7 +50,7 @@ on.
 script as follows:
  `from common.useful import createCSV, createXLS`
  
- ## Pure Functions
+### Pure Functions
  
 0. The function always evaluates the same result value given the same argument value(s). 
 0. The function result value cannot depend on any hidden information or state that may change while program execution proceeds or between different executions of the program, nor can it depend on any external input from I/O devices
