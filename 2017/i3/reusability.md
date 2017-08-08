@@ -52,9 +52,9 @@ script as follows:
  
 ### Pure Functions
  
-0. The function always evaluates the same result value given the same argument value(s). 
-0. The function result value cannot depend on any hidden information or state that may change while program execution proceeds or between different executions of the program, nor can it depend on any external input from I/O devices
-0. Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices (usually—see below).
+1. The function always evaluates the same result value given the same argument value(s). 
+1. The function result value cannot depend on any hidden information or state that may change while program execution proceeds or between different executions of the program, nor can it depend on any external input from I/O devices
+1. Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices (usually—see below).
  
 ```py
 my_list = []
