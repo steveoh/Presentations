@@ -12,9 +12,7 @@ If you create your own functions to reuse those functions that you find useful, 
 with other users, package the functions together as a module. Modules package together
 functions in one or more scripts into a folder, which can be shared with others (though they
 often depend on other modules to run). We have used some of the built-in modules, such as
-the CSV module, and third-party modules, such as ArcPy. Let's explore their construction
-to get a feel of how a module is packaged for use and sharing. Open the Chapter13 scripts
-folder, and look in the functions folder. There is a special file inside the folder, which
+the CSV module, and third-party modules, such as ArcPy. There is a special file inside the folder, which
 allows the code inside the folder to be imported as a module, just like CSV or any other
 Python module.
 
