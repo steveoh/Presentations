@@ -20,6 +20,36 @@
    - I recommend being in the habbit of using the equal sign as there are caveats when omitted
  - short options can use a space or no space: `-n output.txt` == `-noutput.txt`
    - i recommend being in the habbit of using the space as there are caveats when omitted
+   
+When doc'ing your options:
+1. they must start with a `-`
+1. use two spaces after to add the description
+1. you can set default values by adding a `[default: <the-default-value>]` at the end of the description
+```
+Options:
+  --verbose
+  -o FILE  the output file [default: ./]
+  -o FILE --output=FILE  the long and short version of ouput    ### With arguments without comma, with "=" sign
+  -i <file>, --input <file>
+Other: --bad  # BAD, line does not start with dash "-"
+```
+   
+If you have a lot of options that are all applicatble you can use the `[options]` shortcut
+```
+my_program [options] <path>
+
+--all             List everything.
+--long            Long output.
+--human-readable  Display in human-readable format.
+```
+instead of
+```
+my_program [--all --long --human-readable] <path>
+
+--all             List everything.
+--long            Long output.
+--human-readable  Display in human-readable format.
+```
 
 ###### Optional vs Required
 `[options arguments or commands within square brackets are optional]`: `my_program [command] [--option] [<argument>]`
@@ -51,7 +81,9 @@ Choose whatever makes more sense to you for readability
 
 ###### One or more
 `element...` allows for repeating items one or more times  
+
 the parsed dictionary will contain an array of items that were split by a space
+
 
 
 ### Install
