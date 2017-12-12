@@ -1,7 +1,19 @@
 # Docopt
+> docopt does one thing and does it well: it implements your command-line interface.
+
+There is no validation other than the command-line interface. For data validation docopt recommends [schema](https://github.com/keleshev/schema)
+
+### Why
 
 1. Documents your command-line application
 1. Generates a parser for your command line application
+
+### About
+
+- https://github.com/docopt
+  - implemented in many languages
+  - https://github.com/docopt/docopt
+- http://try.docopt.org/
 
 ### Command Line Applications
 
@@ -10,8 +22,21 @@
 
 ### Syntax
 
+###### Sub Commands
+Anything that is not in a `<>`, `[]`, `()`, or following a `-` or `--`
+
+```
+Usage: my_program_file.py FILE
+       my_program_file.py COUNT FILE
+```
+
 ###### Arguments
 `<positional_argument>`: `my_program <input1> <input2>`
+
+```
+Usage: my_program_file.py FILE <input1>
+       my_program_file.py COUNT FILE <input1>
+```
 
 ###### Options
 `-o --option`: these two options are identical
