@@ -3,6 +3,8 @@
 
 There is no validation other than the command-line interface. For data validation docopt recommends [schema](https://github.com/keleshev/schema)
 
+[Prereq blog post reading](https://gis.utah.gov/the-evolution-of-a-python-script/)
+
 ### Why
 
 1. Documents your command-line application
