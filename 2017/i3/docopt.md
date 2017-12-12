@@ -18,16 +18,21 @@
    - I recommend being in the habbit of using the equal sign as there are caveats when omitted
  - short options can use a space or no space: `-n output.txt` == `-noutput.txt`
    - i recommend being in the habbit of using the space as there are caveats when omitted
+
 `[options arguments or commands within square brackets are optional]`: `my_program [command] [--option] [<argument>]`
  - you can also combine the example into `my_program [command --option <argument>]`
   
 `(options or arguments within round brackets are required)`
-**All elements are required by default if not included in `[]`**  
+**All elements are required by default if not included in `[]`**
+
 in this instance if you provide `<one-argument>` you will also need to provide `<another_argument>`: `my_program [(<one-argument> <another-argument>)]` 
 
 Mutually exclusive (choose one) can be created with the `|` pipe operator: `my_program go (--up | --down | --left | --right)`
+ 
  - in the example you **have** to choose only one option
+ 
 `my_program go [--up | --down | --left | --right]`
+
  - in this example you **could** choose only one option
 
 ```
