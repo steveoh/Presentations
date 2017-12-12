@@ -10,8 +10,10 @@
 
 ### Syntax
 
+###### Arguments
 `<positional_argument>`: `my_program <input1> <input2>`
 
+###### Options
 `-o --option`: these two options are identical
  - short option syntax can be stacked: `-abc`
  - long option values can use a space or an equal sign: `--name output.txt` == `--name=output.txt`
@@ -19,6 +21,7 @@
  - short options can use a space or no space: `-n output.txt` == `-noutput.txt`
    - i recommend being in the habbit of using the space as there are caveats when omitted
 
+###### Optional vs Required
 `[options arguments or commands within square brackets are optional]`: `my_program [command] [--option] [<argument>]`
  - you can also combine the example into `my_program [command --option <argument>]`
   
@@ -27,6 +30,7 @@
 
 in this instance if you provide `<one-argument>` you will also need to provide `<another_argument>`: `my_program [(<one-argument> <another-argument>)]` 
 
+###### This or That
 Mutually exclusive (choose one) can be created with the `|` pipe operator: `my_program go (--up | --down | --left | --right)`
  
  - in the example you **have** to choose only one option
@@ -45,6 +49,7 @@ could be written as
 
 Choose whatever makes more sense to you for readability
 
+###### One or more
 `element...` allows for repeating items one or more times  
 the parsed dictionary will contain an array of items that were split by a space
 
