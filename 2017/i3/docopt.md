@@ -89,3 +89,14 @@ the parsed dictionary will contain an array of items that were split by a space
 ### Install
 
 `pip install docopt`
+
+
+### Usage
+
+```
+from docopt import docopt
+
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__)
+```
