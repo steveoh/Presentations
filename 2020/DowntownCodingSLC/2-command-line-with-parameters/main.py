@@ -14,11 +14,12 @@ main.py - A script that extract spatial data from an address
 import sys
 
 import requests
+import psycopg2
 
 print('Parameter 0: {}'.format(sys.argv[0]))
 print('Parameter 1: {}'.format(sys.argv[1]))
 print('Parameter 2: {}'.format(sys.argv[2]))
-print('Parameter 3: {}'.format(sys.argv[3]))
+print('Parameter 3: {}\n'.format(sys.argv[3]))
 
 KEY = sys.argv[1]
 STREET = sys.argv[2]
@@ -44,3 +45,39 @@ x = location['x']
 y = location['y']
 
 print(f'address location: {x}, {y}')
+
+conn = psycopg2.connect("dbname=opensgid host=opensgid.agrc.utah.gov user=agrc password=agrc")
+cur = conn.cursor()
+
+cur.execute(
+    f'SELECT name, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
+    'FROM recreation.golf_courses '
+    'ORDER BY dist '
+    'LIMIT 1;'
+)
+
+golf_course, _ = cur.fetchone()
+
+print(f'the closest golf course is {golf_course}')
+
+cur.execute(
+    f'SELECT name, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
+    'FROM recreation.ski_area_resort_locations '
+    'ORDER BY dist '
+    'LIMIT 1;'
+)
+
+ski_resort, _ = cur.fetchone()
+
+print(f'the closest ski resort is {ski_resort}')
+
+cur.execute(
+    f'SELECT primaryname, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
+    'FROM recreation.trailheads '
+    'ORDER BY dist '
+    'LIMIT 1;'
+)
+
+trailhead, _ = cur.fetchone()
+
+print(f'the closest trailhead is {trailhead}')
