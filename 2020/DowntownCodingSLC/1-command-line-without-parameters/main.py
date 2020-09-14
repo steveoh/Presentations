@@ -11,11 +11,12 @@ main.py - A script that extracts spatial data for an address
 #: - difficult to share - api key is unique to user
 #: - dependencies are not easily installable
 
-from dotenv import load_dotenv
-import requests
 import locale
-from os import getenv
 import sys
+from os import getenv
+
+import requests
+from dotenv import load_dotenv
 
 locale.setlocale(locale.LC_ALL, '')
 load_dotenv()
