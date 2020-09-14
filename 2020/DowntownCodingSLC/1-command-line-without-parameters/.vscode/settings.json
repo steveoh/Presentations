@@ -1,0 +1,24 @@
+{
+  "cSpell.words": [
+    "agrc",
+    "dotenv",
+    "getenv",
+    "load",
+    "load dotenv"
+  ],
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.pycodestyleEnabled": false,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfPath": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "${workspaceRoot}/setup.cfg"
+  ],
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    120
+  ],
+  "files.insertFinalNewline": true,
+}
