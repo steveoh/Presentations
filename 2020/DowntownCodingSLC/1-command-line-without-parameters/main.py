@@ -22,7 +22,7 @@ load_dotenv()
 KEY = getenv('AGRC_API_KEY')
 
 request = requests.get(
-    'http://api.mapserv.utah.gov/api/v1/geocode/123 south main street/slc', timeout=5, params={'apikey': KEY}
+    'https://api.mapserv.utah.gov/api/v1/geocode/123 south main street/slc', timeout=5, params={'apikey': KEY}
 )
 
 response = request.json()
@@ -40,7 +40,7 @@ y = location['y']
 print(f'address is at {x}, {y}')
 
 request = requests.get(
-    'http://api.mapserv.utah.gov/api/v1/search/sgid10.boundaries.counties/name',
+    'https://api.mapserv.utah.gov/api/v1/search/sgid10.boundaries.counties/name',
     timeout=5,
     params={
         'apikey': KEY,
@@ -61,7 +61,7 @@ name = result['attributes']['name']
 print(f'address is in {name} county')
 
 request = requests.get(
-    'http://api.mapserv.utah.gov/api/v1/search/sgid10.cadastre.landownership/owner',
+    'https://api.mapserv.utah.gov/api/v1/search/sgid10.cadastre.landownership/owner',
     timeout=5,
     params={
         'apikey': KEY,
@@ -82,7 +82,7 @@ owner = result['attributes']['owner']
 print(f'the land is owned by a {owner} entity')
 
 request = requests.get(
-    'http://api.mapserv.utah.gov/api/v1/search/sgid10.cadastre.parcels_saltlake_lir/total_mkt_value,bldg_sqft,floors_cnt,built_yr',
+    'https://api.mapserv.utah.gov/api/v1/search/sgid10.cadastre.parcels_saltlake_lir/total_mkt_value,bldg_sqft,floors_cnt,built_yr',
     timeout=5,
     params={
         'apikey': KEY,
@@ -108,7 +108,7 @@ print(
 )
 
 request = requests.get(
-    'http://api.mapserv.utah.gov/api/v1/search/sgid10.raster.usgs_dem_10meter/feet',
+    'https://api.mapserv.utah.gov/api/v1/search/sgid10.raster.usgs_dem_10meter/feet',
     timeout=5,
     params={
         'apikey': KEY,
