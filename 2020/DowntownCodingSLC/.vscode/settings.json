@@ -4,7 +4,8 @@
     "dotenv",
     "getenv",
     "load",
-    "load dotenv"
+    "dotenv",
+    "referer"
   ],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
