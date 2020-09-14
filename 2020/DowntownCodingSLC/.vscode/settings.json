@@ -1,10 +1,11 @@
 {
   "cSpell.words": [
     "agrc",
+    "dbname",
     "dotenv",
     "getenv",
     "load",
-    "dotenv",
+    "psycopg",
     "referer"
   ],
   "python.linting.enabled": true,
