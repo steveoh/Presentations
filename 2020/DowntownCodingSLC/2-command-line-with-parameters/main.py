@@ -4,6 +4,13 @@
 main.py - A script that extract spatial data from an address
 """
 
+#: pros
+#: - hard coded dependencies removed
+#: - script is more generic and can geocode any address input with any api key
+#: cons
+#: - command line arguments are not documented or discoverable without reading the code
+#: - dependencies are still not easily installable
+
 import sys
 
 import requests
