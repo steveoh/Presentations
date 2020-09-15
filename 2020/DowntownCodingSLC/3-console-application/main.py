@@ -4,7 +4,7 @@
 Hazard Helper
 
 Usage:
-  main.py hazards near <street> <zone> --key <api_key>
+  main.py utilities at <street> <zone> --key <api_key> [[--gas --water --electric] | --all]
 
 Options:
   <street>   a quoted street address
@@ -17,12 +17,15 @@ Options:
 #: cons
 #: - dependencies are still not easily installable
 
-from docopt import docopt
+import json
+
 import requests
+from docopt import docopt
 
 
-def get_hazards(street, zone, key):
-    '''queries and prints hazards near an address
+def get_coordinates(street, zone, key):
+    '''geocodes an address address
+    returns a coordinate tuple
     '''
 
     request = requests.get(
@@ -37,7 +40,7 @@ def get_hazards(street, zone, key):
     if request.status_code != 200:
         print('address not found', response)
 
-        return
+        return None, None
 
     match = response['result']
     location = match['location']
@@ -46,10 +49,106 @@ def get_hazards(street, zone, key):
 
     print(f'address location: {x}, {y}\n')
 
+    return x, y
+
+
+def arcgis_online_query(service_url, where, geometry, outfields):
+    request = requests.get(
+        service_url,
+        timeout=5,
+        params={
+            'where': where,
+            'geometry': json.dumps(geometry),
+            'geometryType': 'esriGeometryPoint',
+            'spatialRel': 'esriSpatialRelIntersects',
+            'outFields': ','.join(outfields),
+            'returnGeometry': False,
+            'f': 'json'
+        }
+    )
+
+    return request.json()
+
+
+def get_fiber_providers(x, y):
+    response = arcgis_online_query(
+        'https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/BroadbandService/FeatureServer/0/query',
+        'transtech=50', {
+            'x': x,
+            'y': y,
+            'spatialReference': {
+                'wkid': 26912
+            }
+        }, ['UTProvCode']
+    )
+
+    providers = [provider['attributes']['UTProvCode'] for provider in response['features']]
+
+    print(f'Fiber internet is available from {", ".join(providers)}')
+
+
+def get_gas_provider(x, y):
+    response = arcgis_online_query(
+        'https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/UtahNaturalGasServiceAreas_Approx/FeatureServer/0/query',
+        None, {
+            'x': x,
+            'y': y,
+            'spatialReference': {
+                'wkid': 26912
+            }
+        }, ['Name']
+    )
+
+    providers = [provider['attributes']['Name'] for provider in response['features']]
+
+    print(f'Gas is provided by {", ".join(providers)}')
+
+
+def get_electricity_provider(x, y):
+    response = arcgis_online_query(
+        'https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/ElectricalService/FeatureServer/0/query',
+        None, {
+            'x': x,
+            'y': y,
+            'spatialReference': {
+                'wkid': 26912
+            }
+        }, ['PROVIDER']
+    )
+
+    providers = [provider['attributes']['PROVIDER'] for provider in response['features']]
+
+    print(f'Electricity is provided by {", ".join(providers)}')
+
+
+def get_water_provider(x, y):
+    response = arcgis_online_query(
+        'https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/RetailCulinaryWaterServiceAreas/FeatureServer/0/query',
+        None, {
+            'x': x,
+            'y': y,
+            'spatialReference': {
+                'wkid': 26912
+            }
+        }, ['DWNAME']
+    )
+
+    providers = [provider['attributes']['DWNAME'] for provider in response['features']]
+
+    print(f'Water is provided by {", ".join(providers)}')
+
 
 if __name__ == '__main__':
     options = docopt(__doc__)
 
     print(options)
 
-    get_hazards(options['<street>'], options['<zone>'], options['<api_key>'])
+    x, y = get_coordinates(options['<street>'], options['<zone>'], options['<api_key>'])
+    get_fiber_providers(x, y)
+
+    if options['--all'] or options['--gas']:
+        get_gas_provider(x, y)
+    if options['--all'] or options['--electric']:
+        get_electricity_provider(x, y)
+    if options['--all'] or options['--water']:
+        get_water_provider(x, y)
