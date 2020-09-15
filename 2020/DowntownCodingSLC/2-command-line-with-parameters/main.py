@@ -46,8 +46,20 @@ y = location['y']
 
 print(f'address location: {x}, {y}')
 
+#: https://gis.utah.gov/sgid/open-sgid/
 conn = psycopg2.connect("dbname=opensgid host=opensgid.agrc.utah.gov user=agrc password=agrc")
 cur = conn.cursor()
+
+cur.execute(
+    f'SELECT name, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
+    'FROM society.liquor_stores '
+    'ORDER BY dist '
+    'LIMIT 1;'
+)
+
+booze, _ = cur.fetchone()
+
+print(f'the closest cold beverage is at {booze}')
 
 cur.execute(
     f'SELECT name, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
