@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # * coding: utf8 *
 """
-Hazard Helper
+Utility Provider
 
 Usage:
   main.py utilities at <street> <zone> --key <api_key> [[--gas --water --electric] | --all]
@@ -20,7 +20,10 @@ Options:
 import json
 
 import requests
+from colorama import Fore, init
 from docopt import docopt
+
+init(autoreset=True)
 
 
 def get_coordinates(street, zone, key):
@@ -47,7 +50,7 @@ def get_coordinates(street, zone, key):
     x = location['x']
     y = location['y']
 
-    print(f'address location: {x}, {y}\n')
+    print(f'address location: {Fore.MAGENTA}{x}, {y}\n')
 
     return x, y
 
@@ -55,7 +58,7 @@ def get_coordinates(street, zone, key):
 def arcgis_online_query(service_url, where, geometry, outfields):
     request = requests.get(
         service_url,
-        timeout=5,
+        # timeout=15,
         params={
             'where': where,
             'geometry': json.dumps(geometry),
@@ -84,7 +87,7 @@ def get_fiber_providers(x, y):
 
     providers = [provider['attributes']['UTProvCode'] for provider in response['features']]
 
-    print(f'Fiber internet is available from {", ".join(providers)}')
+    print(f'Fiber internet is available from {Fore.CYAN}{", ".join(providers)}')
 
 
 def get_gas_provider(x, y):
@@ -101,7 +104,7 @@ def get_gas_provider(x, y):
 
     providers = [provider['attributes']['Name'] for provider in response['features']]
 
-    print(f'Gas is provided by {", ".join(providers)}')
+    print(f'Gas is provided by {Fore.CYAN}{", ".join(providers)}')
 
 
 def get_electricity_provider(x, y):
@@ -118,7 +121,7 @@ def get_electricity_provider(x, y):
 
     providers = [provider['attributes']['PROVIDER'] for provider in response['features']]
 
-    print(f'Electricity is provided by {", ".join(providers)}')
+    print(f'Electricity is provided by {Fore.CYAN}{", ".join(providers)}')
 
 
 def get_water_provider(x, y):
@@ -135,13 +138,13 @@ def get_water_provider(x, y):
 
     providers = [provider['attributes']['DWNAME'] for provider in response['features']]
 
-    print(f'Water is provided by {", ".join(providers)}')
+    print(f'Water is provided by {Fore.CYAN}{", ".join(providers)}')
 
 
 if __name__ == '__main__':
     options = docopt(__doc__)
 
-    print(options)
+    print(f'{Fore.YELLOW}{options}')
 
     x, y = get_coordinates(options['<street>'], options['<zone>'], options['<api_key>'])
     get_fiber_providers(x, y)

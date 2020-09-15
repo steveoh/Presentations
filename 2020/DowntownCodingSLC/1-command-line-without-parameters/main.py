@@ -16,10 +16,12 @@ import sys
 from os import getenv
 
 import requests
+from colorama import Fore, init
 from dotenv import load_dotenv
 
 locale.setlocale(locale.LC_ALL, '')
 load_dotenv()
+init(autoreset=True)
 KEY = getenv('AGRC_API_KEY')
 
 request = requests.get(
@@ -41,7 +43,7 @@ location = match['location']
 x = location['x']
 y = location['y']
 
-print(f'address location: {x}, {y}\n')
+print(f'address location: {Fore.MAGENTA}{x}, {y}\n')
 
 request = requests.get(
     'https://api.mapserv.utah.gov/api/v1/search/sgid10.boundaries.counties/name',
@@ -63,7 +65,7 @@ if request.status_code != 200:
 result = response['result'][0]
 name = result['attributes']['name']
 
-print(f'address is in {name} county')
+print(f'address is in {Fore.CYAN}{name}{Fore.RESET} county')
 
 request = requests.get(
     'https://api.mapserv.utah.gov/api/v1/search/sgid10.cadastre.landownership/owner',
@@ -85,7 +87,7 @@ if request.status_code != 200:
 result = response['result'][0]
 owner = result['attributes']['owner']
 
-print(f'the land is owned by a {owner} entity')
+print(f'the land is owned by a {Fore.CYAN}{owner}{Fore.RESET} entity')
 
 request = requests.get(
     'https://api.mapserv.utah.gov/api/v1/search/sgid10.cadastre.parcels_saltlake_lir/total_mkt_value,bldg_sqft,floors_cnt,built_yr',
@@ -111,7 +113,7 @@ number_of_floors = int(result['attributes']['floors_cnt'])
 year_built = result['attributes']['built_yr']
 
 print(
-    f'the structure was built in {year_built} worth {market_value} with {square_feet:,} square feet across {number_of_floors} floors'
+    f'the structure was built in {Fore.CYAN}{year_built}{Fore.RESET} worth {Fore.GREEN}{market_value}{Fore.RESET} with {Fore.YELLOW}{square_feet:,}{Fore.RESET} square feet across {Fore.RED}{number_of_floors}{Fore.RESET} floors'
 )
 
 request = requests.get(
@@ -134,4 +136,4 @@ if request.status_code != 200:
 result = response['result'][0]
 elevation = float(result['attributes']['feet'])
 
-print(f'the elevation is {elevation:,.2f} feet')
+print(f'the elevation is {Fore.CYAN}{elevation:,.2f}{Fore.RESET} feet')

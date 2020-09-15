@@ -13,13 +13,16 @@ main.py - A script that extract spatial data from an address
 
 import sys
 
-import requests
 import psycopg2
+import requests
+from colorama import Fore, init
 
-print('Parameter 0: {}'.format(sys.argv[0]))
-print('Parameter 1: {}'.format(sys.argv[1]))
-print('Parameter 2: {}'.format(sys.argv[2]))
-print('Parameter 3: {}\n'.format(sys.argv[3]))
+init(autoreset=True)
+
+print(f'Parameter 0: {Fore.YELLOW}{sys.argv[0]}')
+print(f'Parameter 1: {Fore.YELLOW}{sys.argv[1]}')
+print(f'Parameter 2: {Fore.YELLOW}{sys.argv[2]}')
+print(f'Parameter 3: {Fore.YELLOW}{sys.argv[3]}\n')
 
 KEY = sys.argv[1]
 STREET = sys.argv[2]
@@ -44,7 +47,7 @@ location = match['location']
 x = location['x']
 y = location['y']
 
-print(f'address location: {x}, {y}\n')
+print(f'address location: {Fore.MAGENTA}{x}, {y}\n')
 
 #: https://gis.utah.gov/sgid/open-sgid/
 conn = psycopg2.connect("dbname=opensgid host=opensgid.agrc.utah.gov user=agrc password=agrc")
@@ -59,7 +62,7 @@ cur.execute(
 
 booze, _ = cur.fetchone()
 
-print(f'the closest cold beverage is at {booze}')
+print(f'the closest cold beverage is at {Fore.CYAN}{booze}')
 
 cur.execute(
     f'SELECT name, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
@@ -70,7 +73,7 @@ cur.execute(
 
 golf_course, _ = cur.fetchone()
 
-print(f'the closest golf course is {golf_course}')
+print(f'the closest golf course is {Fore.CYAN}{golf_course}')
 
 cur.execute(
     f'SELECT name, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
@@ -81,7 +84,7 @@ cur.execute(
 
 ski_resort, _ = cur.fetchone()
 
-print(f'the closest ski resort is {ski_resort}')
+print(f'the closest ski resort is {Fore.CYAN}{ski_resort}')
 
 cur.execute(
     f'SELECT primaryname, ST_SetSRID(ST_MakePoint({x},{y}), 26912) <-> shape as dist '
@@ -92,4 +95,4 @@ cur.execute(
 
 trailhead, _ = cur.fetchone()
 
-print(f'the closest trailhead is {trailhead}')
+print(f'the closest trailhead is {Fore.CYAN}{trailhead}')
