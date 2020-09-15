@@ -1,12 +1,14 @@
 {
   "cSpell.words": [
     "agrc",
+    "arcgis",
     "dbname",
     "dotenv",
     "getenv",
     "load",
     "psycopg",
-    "referer"
+    "referer",
+    "wkid"
   ],
   "python.linting.enabled": true,
   "python.linting.pylintEnabled": true,
