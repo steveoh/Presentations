@@ -85,9 +85,9 @@ _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-scri
 
 #### Pros
 
-1. pip install package and all dependencies to a known state
-1. have package name available in terminal anywhere
-1. sharable in the python package index
+- pip install package and all dependencies to a known state
+- have package name available in terminal anywhere
+- sharable in the python package index
 
 #### Example usage
 
