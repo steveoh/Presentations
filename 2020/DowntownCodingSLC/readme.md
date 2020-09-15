@@ -40,7 +40,10 @@ _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-scri
 
 #### Example
 
-`python 1-command-line-without-parameters/main.py`
+1. `python 1-command-line-without-parameters/main.py`
+1. `rm -rf ./env && python -m venv .env && source .env/bin/activate`
+1. `python 1-command-line-without-parameters/main.py`
+1. `pip install -r requirements.txt`
 
 ### Command line tool with arguments
 
