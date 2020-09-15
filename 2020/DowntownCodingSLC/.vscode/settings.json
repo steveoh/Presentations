@@ -4,10 +4,12 @@
     "arcgis",
     "dbname",
     "dotenv",
+    "geocode",
     "getenv",
     "load",
     "psycopg",
     "referer",
+    "sgid",
     "wkid"
   ],
   "python.linting.enabled": true,
