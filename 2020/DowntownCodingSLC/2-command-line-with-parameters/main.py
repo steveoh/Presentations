@@ -44,7 +44,7 @@ location = match['location']
 x = location['x']
 y = location['y']
 
-print(f'address location: {x}, {y}')
+print(f'address location: {x}, {y}\n')
 
 #: https://gis.utah.gov/sgid/open-sgid/
 conn = psycopg2.connect("dbname=opensgid host=opensgid.agrc.utah.gov user=agrc password=agrc")

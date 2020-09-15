@@ -41,7 +41,7 @@ location = match['location']
 x = location['x']
 y = location['y']
 
-print(f'address location: {x}, {y}')
+print(f'address location: {x}, {y}\n')
 
 request = requests.get(
     'https://api.mapserv.utah.gov/api/v1/search/sgid10.boundaries.counties/name',

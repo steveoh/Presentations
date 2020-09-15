@@ -44,7 +44,7 @@ def get_hazards(street, zone, key):
     x = location['x']
     y = location['y']
 
-    print(f'address location: {x}, {y}')
+    print(f'address location: {x}, {y}\n')
 
 
 if __name__ == '__main__':
