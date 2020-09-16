@@ -5,13 +5,13 @@
   - i like writing code with c#, python, javascript
   - i enjoy designing web api's and automating processes
 - about [AGRC](https://gis.utah.gov/about/)
-  - SGID ~400 spatial layers
-    - compile local data to state; parcels, roads, address points
   - Build custom web applications (dojo/react/angular), components, workflows, etc
     - locate.utah.gov, [wri.utah.gov](https://wri.utah.gov/wri/map/map.html#id=2485)
     - validating voter precincts, [unclaimed property](https://mycash.utah.gov) analytics
     - support 911 dispatch centers
   - Aerial Imagery, Lidar, and base maps [atlas](https://atlas.utah.gov)
+  - SGID ~400 spatial layers
+    - compile local data to state; parcels, roads, address points
   - GPS Network
     - sub centimeter accuracy for surveyors with connected GPS receivers correcting satellite data in real time
   - Coordination
