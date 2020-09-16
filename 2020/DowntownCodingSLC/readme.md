@@ -2,7 +2,8 @@
 
 - about me
   - @steveagrc
-  - c#, python, javascript developer
+  - i like writing code with c#, python, javascript
+  - i enjoy designing web api's and automating processes
 - about AGRC
   - SGID ~400 spatial layers
     - compile local data to state; parcels, roads, address points
