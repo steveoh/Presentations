@@ -1,26 +1,50 @@
 # Downtown SLC User Group
 
-- intro
-- reasoning
+- about me
+  - @steveagrc
+  - ithaca college
+  - c#, python, javascript
+- about AGRC
+  - SGID ~400 spatial layers
+    - compile local data to state; parcels, roads, address points
+  - Aerial Imagery, Lidar, and base maps [atlas](https://atlas.utah.gov)
+  - Build custom web applications (dojo/react/angular), components, workflows, etc
+    - locate.utah.gov, [wri.utah.gov](https://wri.utah.gov/wri/map/map.html#id=2485)
+    - validating voter precincts, [unclaimed property](https://mycash.utah.gov) analytics
+    - support 911 dispatch centers
+  - GPS Network
+    - sub centimeter accuracy for surveyors with connected GPS receivers correcting satellite data in real time
+  - Coordination
+    - Spread geospatial news, events, etc
+      - maps on the hill
+      - UGIC
+      - User groups
+- reasons for choosing to talk about python
+  - most common language for spatial and non technicals
   - we hire geographers
   - automation and programming are major daily tasks
-  - documentation shows sequential samples
+  - esri documentation shows sequential samples
+    - copy paste programming
 - resources
-  - gis.utah.gov - jekyll / blog, news, data discovery, metadata
-  - api.mapserv.utah.gov - asp.net web api / geocoding, searching, and info endpoints
+  - [Agency website](https://gis.utah.gov) - jekyll / blog, news, data discovery, metadata
+  - Github: [agrc](https://github.com/agrc), [agrc-widgets](https://github.com/agrc-widgets)
+  - [AGRC Web API](https://api.mapserv.utah.gov) - asp.net web api / geocoding, searching, and info endpoints
     - web accessible sgid
-  - open sgid - postgis cloud sql / public database access
+  - [Open SGID](https://gis.utah.gov/sgid/open-sgid/) - postgis cloud sql / public database access
     - visualization and analysis
-  - opendata.gis.utah.gov - rails, ember / esri hub
+  - [Open Data](https://opendata.gis.utah.gov) - rails, ember / esri hub
     - data discovery
-  - arcgis online - esri / feature services
+  - [arcgis online](https://www.arcgis.com/home/index.html) - esri / feature services
     - query with geo service api
+  - [AGRC python template](https://github.com/agrc/python)
 
 ## Python Script Evolution
 
 _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-script/)._
 
-### Command line tool
+### Command line tool (1)
+
+Using [Web API](https://api.mapserv.utah.gov) web access to the SGID
 
 #### Pros
 
@@ -41,11 +65,15 @@ _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-scri
 #### Example
 
 1. `python 1-command-line-without-parameters/main.py`
-1. `rm -rf ./env && python -m venv .env && source .env/bin/activate`
+1. `deactivate`
+1. `source .env/bin/activate`
 1. `python 1-command-line-without-parameters/main.py`
 1. `pip install -r requirements.txt`
 
-### Command line tool with arguments
+### Command line tool with arguments (2)
+
+- Using [Open SGID](https://gis.utah.gov/sgid/open-sgid/) data
+- [sys.argv](https://docs.python.org/3/library/sys.html#sys.argv)
 
 #### Pros
 
@@ -62,10 +90,13 @@ _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-scri
 
 #### Example usage
 
-1. `python 2-command-line-with-parameters/main.py`
 1. `python 2-command-line-with-parameters/main.py AGRC-130B2425664697 '326 eat south temple' 'salt lake'`
+1. `python 2-command-line-with-parameters/main.py`
 
-### Console application
+### Console application (3)
+
+- Using ArcGIS Online geo service data found from [Open Data](https://opendata.gis.utah.gov/)
+- [doctopt](http://docopt.org/)
 
 #### Pros
 
@@ -84,7 +115,10 @@ _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-scri
 1. `python 3-console-application/main.py utilities at '866 E 4Th Ave' slc --key AGRC-130B2425664697 --gas`
 1. `python 3-console-application/main.py utilities at '866 E 4Th Ave' slc --key AGRC-130B2425664697 --all`
 
-### Console application as a package
+### Console application as a package (4)
+
+- [agrc python template](https://github.com/agrc/python)
+- open sgid
 
 #### Pros
 
@@ -94,6 +128,7 @@ _Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-scri
 
 #### Example usage
 
-1. `sgid what is at --from-table=boundaries.municipal_boundaries --attributes=name --filter="name like 'M%'"`
+1. `pip install --editable ./`
 1. `sgid what is at --x 424818.88010852225 --y 4513223.70267614 --from-table=boundaries.municipal_boundaries --attributes=name`
 1. `sgid what is at --street '2222 atkin ave' --zone 84109 --api-key AGRC-130B2425664697 --from-table=boundaries.municipal_boundaries --attributes=name`
+1. `sgid what is at --from-table=boundaries.municipal_boundaries --attributes=name --filter="name like 'M%'"`
