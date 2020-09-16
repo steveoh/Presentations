@@ -20,6 +20,7 @@
       - UGIC
       - User groups
 - reasons for choosing to talk about python
+  _ based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-script/)
   - most common language for spatial and non technicals
   - we hire geographers
   - automation and programming are major daily tasks
@@ -39,8 +40,6 @@
   - [AGRC python template](https://github.com/agrc/python)
 
 ## Python Script Evolution
-
-_Based on a [2017 blog post](https://gis.utah.gov/the-evolution-of-a-python-script/)._
 
 ### Command line tool (1)
 
@@ -132,3 +131,17 @@ Using [Web API](https://api.mapserv.utah.gov) web access to the SGID
 1. `sgid what is at --x 424818.88010852225 --y 4513223.70267614 --from-table=boundaries.municipal_boundaries --attributes=name`
 1. `sgid what is at --street '2222 atkin ave' --zone 84109 --api-key AGRC-130B2425664697 --from-table=boundaries.municipal_boundaries --attributes=name`
 1. `sgid what is at --from-table=boundaries.municipal_boundaries --attributes=name --filter="name like 'M%'"`
+
+## Wrap up
+
+- evolve your python scripts
+- enhance your business with spatial data. visualize your customers or product
+- go sign up to use our web api
+- the SGID is not a single database any longer. It's the core data which is accessible from many places
+- you do not need proprietary software to use GIS data
+
+## Considerations
+
+- use the web api for any scale geocoding jobs but small scale search if possible
+- use the open sgid for large scale spatial enhancements, normal visualization analysis, etc
+- use open data and arcgis online for web maps, advanced small scale queries, or within esri arcgis products
