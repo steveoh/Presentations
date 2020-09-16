@@ -2,8 +2,7 @@
 
 - about me
   - @steveagrc
-  - ithaca college
-  - c#, python, javascript
+  - c#, python, javascript developer
 - about AGRC
   - SGID ~400 spatial layers
     - compile local data to state; parcels, roads, address points
