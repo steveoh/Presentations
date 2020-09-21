@@ -1,0 +1,36 @@
+{
+  "cSpell.words": [
+    "agrc",
+    "arcgis",
+    "atkin",
+    "dbname",
+    "docopt",
+    "dotenv",
+    "geocode",
+    "getenv",
+    "load",
+    "mapserv",
+    "opendata",
+    "postgis",
+    "psycopg",
+    "referer",
+    "sgid",
+    "venv",
+    "wkid"
+  ],
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": false,
+  "python.linting.pycodestyleEnabled": false,
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfPath": "yapf",
+  "python.formatting.yapfArgs": [
+    "--style",
+    "${workspaceRoot}/setup.cfg"
+  ],
+  "editor.formatOnSave": true,
+  "editor.rulers": [
+    120
+  ],
+  "files.insertFinalNewline": true,
+}
